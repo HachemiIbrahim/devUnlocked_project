@@ -1,12 +1,14 @@
+// Represents a product with its details such as id, title, price, description, category, image, and rating.
 class ProductModel {
-  final int id;
-  final String title;
-  final double price;
-  final String description;
-  final String category;
-  final String image;
-  final Rating rating;
+  final int id; // Unique identifier for the product
+  final String title; // Name or title of the product
+  final double price; // Price of the product
+  final String description; // Description of the product
+  final String category; // Category to which the product belongs
+  final String image; // URL for the product image
+  final Rating rating; // Rating object containing the rating value and count
 
+  // Constructor to initialize all fields of the ProductModel class
   ProductModel({
     required this.id,
     required this.title,
@@ -17,51 +19,40 @@ class ProductModel {
     required this.rating,
   });
 
+  // Factory constructor to create a ProductModel instance from a JSON object
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      id: json['id'],
-      title: json['title'],
-      price: json['price'].toDouble(), // Ensure price is converted to double
-      description: json['description'],
-      category: json['category'],
-      image: json['image'],
-      rating: Rating.fromJson(json['rating']),
+      id: json['id'], // Assign the id from the JSON object
+      title: json['title'], // Assign the title from the JSON object
+      price: json['price']
+          .toDouble(), // Convert price to a double (in case it's not)
+      description:
+          json['description'], // Assign the description from the JSON object
+      category: json['category'], // Assign the category from the JSON object
+      image: json['image'], // Assign the image URL from the JSON object
+      rating: Rating.fromJson(json[
+          'rating']), // Create a Rating object from the JSON 'rating' field
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'price': price,
-      'description': description,
-      'category': category,
-      'image': image,
-      'rating': rating.toJson(),
-    };
   }
 }
 
+// Represents the rating details of a product, including the rating value and the number of ratings.
 class Rating {
-  final double rate;
-  final int count;
+  final double rate; // Average rating value of the product
+  final int count; // Total number of ratings the product has received
 
+  // Constructor to initialize all fields of the Rating class
   Rating({
     required this.rate,
     required this.count,
   });
 
+  // Factory constructor to create a Rating instance from a JSON object
   factory Rating.fromJson(Map<String, dynamic> json) {
     return Rating(
-      rate: json['rate'].toDouble(), // Ensure rate is converted to double
-      count: json['count'],
+      rate: json['rate']
+          .toDouble(), // Convert rate to a double (in case it's not)
+      count: json['count'], // Assign the count from the JSON object
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'rate': rate,
-      'count': count,
-    };
   }
 }
