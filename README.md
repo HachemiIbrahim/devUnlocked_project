@@ -1,3 +1,2 @@
-# workshop
+# DevUnlocked project
 
-A new Flutter project.
